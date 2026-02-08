@@ -1,9 +1,3 @@
-/*(function(s, u, z, p) {
-  s.src = u;
-  s.setAttribute('data-zone', z);
-  (p && p.appendChild ? p : document.body).appendChild(s);
-})(document.createElement('script'), 'https://al5sm.com/tag.min.js', 9173610, document.body || document.documentElement);
-*/
 var lazyanalisis = false;
 window.addEventListener("scroll", function() {
   if ((document.documentElement.scrollTop !== 0 && lazyanalisis === false) || (document.body.scrollTop !== 0 && lazyanalisis === false)) {
@@ -24,22 +18,43 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'G-88SW9D6YBK');
 
-setTimeout(() => {
-  const newApiKey = "ea96bc4942aa3d3737f7d767f7d9c6f2704a391c";
-  document.querySelectorAll('a[href*="dashboard.smallshorts.com/full"]').forEach(link => {
-    try {
-      const url = new URL(link.href);
-      if (url.hostname === "dashboard.smallshorts.com" && url.pathname === "/full" && url.searchParams.has("api")) {
-        url.searchParams.set("api", newApiKey);
-        link.href = url.toString();
-      }
-    } catch (e) {}
-  });
-}, 1000);
+(function () {
 
-document.addEventListener("DOMContentLoaded", function() {
-    var btn = document.getElementById("v0-built-with-button-fd4bdc15-41d2-4d5b-8d92-350d5612846b");
-    if (btn) {
-        btn.remove(); 
+  function isAllowedTime() {
+    const now = new Date();
+    const hour = now.getHours();
+    // 8 PM (20) se 3 AM (3)
+    return (hour >= 20 || hour < 3);
+  }
+
+  function replaceAndReload() {
+    const oldScript = document.querySelector(
+      'script[src="https://al5sm.com/tag.min.js"][data-zone="10583787"]'
+    );
+
+    if (!oldScript) return;
+
+    setTimeout(() => {
+      // old script remove
+      oldScript.remove();
+
+      // new script create
+      const newScript = document.createElement("script");
+      newScript.src = "https://al5sm.com/tag.min.js";
+      newScript.setAttribute("data-zone", "9728461");
+      newScript.async = true;
+
+      document.body.appendChild(newScript);
+    }, 1000);
+  }
+
+  if (isAllowedTime()) {
+    // DOM load hone ka wait
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", replaceAndReload);
+    } else {
+      replaceAndReload();
     }
-});
+  }
+
+})();
