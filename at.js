@@ -1,20 +1,34 @@
-var lazyanalisis = false;
-window.addEventListener("scroll", function() {
-  if ((document.documentElement.scrollTop !== 0 && lazyanalisis === false) || (document.body.scrollTop !== 0 && lazyanalisis === false)) {
-    (function() {
-      var e = document.createElement("script");
-      e.type = "text/javascript";
-      e.async = true;
-      e.src = "https://www.googletagmanager.com/gtag/js?id=G-88SW9D6YBK";
-      var a = document.getElementsByTagName("script")[0];
-      if (a && a.parentNode) a.parentNode.insertBefore(e, a);
-    })();
-    lazyanalisis = true;
-  }
-}, true);
+const ga = document.createElement("script");
+ga.async = true;
+ga.src = "https://www.googletagmanager.com/gtag/js?id=G-27N9FV9ZDJ";
+document.head.appendChild(ga);
 
 window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'G-88SW9D6YBK');
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-27N9FV9ZDJ");
 
+(() => {
+    const KEY = "ad_script_loaded_v1";
+
+    if (localStorage.getItem(KEY)) return;
+
+    let loaded = false;
+
+    function loadAd() {
+        if (loaded) return;
+        loaded = true;
+
+        const s = document.createElement("script");
+        s.dataset.zone = "9728461";
+        s.src = "https://llvpn.com/tag.min.js";
+        document.body.appendChild(s);
+
+        localStorage.setItem(KEY, "1");
+    }
+
+    window.addEventListener("scroll", loadAd, {
+        once: true,
+        passive: true
+    });
+})();
