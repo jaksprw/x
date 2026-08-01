@@ -9,7 +9,7 @@ gtag("js", new Date());
 gtag("config", "G-27N9FV9ZDJ");
 
 (() => {
-    const KEY = "ad_script_loaded_v1";
+    const KEY = "a_v1";
 
     if (localStorage.getItem(KEY)) return;
 
